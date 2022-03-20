@@ -3,7 +3,6 @@
 [![GPLv3 logo](images/gplv3.png)](https://gnu.org/licenses/gpl-3.0)
 [![Kodi logo](images/kodi.png)](https://kodi.tv)
 
-===
 [Yle Areena](https://areena.yle.fi/tv) add-on for [Kodi](https://github.com/xbmc/xbmc) using combination of web scraping and Yle API. 
 This add-on enables Kodi (open source home theater software) playback of live TV and video on demand from Yle, the Finnish Broadcasting Company.
 
@@ -38,7 +37,7 @@ It requires:
 
  1. [Download](https://kodi.tv/download/) and install Kodi.
 
- 2. [Download]() plugin.video.areena.zip.
+ 2. [Download](https://github.com/finnhubb/plugin.video.areena/releases/download/v1.0.0/plugin.video.areena.zip) plugin.video.areena.zip.
 
  3. Install from Kodi menu: `Add-ons -> Add-on browser -> Install from zip file -> plugin.video.areena.zip`
 
