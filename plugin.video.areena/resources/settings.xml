@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<settings version="1">
+	<section id="plugin.video.areena">
+		<category id="settings" label="33001" help="">
+			<group id="1">
+				<setting id="language" type="string" label="33002" help="">
+					<level>0</level>
+					<default>fi</default>
+					<constraints>
+						<options>
+							<option label="33003">fi</option>
+							<option label="33004">sv</option>
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
+				</setting>
+				<setting id="folder_color" type="string" label="33005" help="">
+					<level>0</level>
+					<default>white</default>
+					<control type="edit" format="string">
+						<heading>33005</heading>
+					</control>
+				</setting>
+				<setting id="title_color" type="string" label="33006" help="">
+					<level>0</level>
+					<default>blue</default>
+					<control type="edit" format="string">
+						<heading>33006</heading>
+					</control>
+				</setting>
+				<setting id="sort_method" type="integer" label="33007" help="">
+					<level>0</level>
+					<default>0</default>
+					<constraints>
+						<options>
+							<option label="33008">0</option>  <!-- xbmcplugin.SORT_METHOD_NONE (Newest first.) -->
+							<option label="33009">26</option> <!-- xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE -->
+							<option label="33010">8</option>  <!-- xbmcplugin.SORT_METHOD_DURATION -->
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
+				</setting>
+				<setting id="max_resolution" type="integer" label="33011" help="">
+					<level>0</level>
+					<default>0</default>
+					<constraints>
+						<options>
+							<option label="33012">0</option> <!-- Automatic -->
+							<option label="33013">1</option> <!-- SD-180 -->
+							<option label="33014">2</option> <!-- SD-270 -->
+							<option label="33015">3</option> <!-- SD-360 -->
+							<option label="33016">4</option> <!-- SD-576 -->
+							<option label="33017">5</option> <!-- HD-720 -->
+							<option label="33018">6</option> <!-- HD-1080 -->
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
+				</setting>
+				<setting id="show_clips" type="boolean" label="33019" help="">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+                <setting id="download_path" type="path" label="33020" help="">
+	                <level>0</level>
+	                <default/>
+	                <constraints>
+		                <writable>true</writable>
+		                <allowempty>true</allowempty>
+	                </constraints>
+	                <control type="button" format="path">
+		                <heading>33020</heading>
+	                </control>
+                </setting>
+				<setting id="debug" type="boolean" label="33021" help="">
+					<level>0</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+                <setting id="clear_cache" type="action" label="33022" help="">
+					<level>0</level>
+                	<data>RunPlugin(plugin://$ID?type=clear_cache)</data> <!-- Execute cache clearing function within the addon. -->
+                	<control type="button" format="action">
+		                <close>true</close>
+	                </control>
+				</setting>
+			</group>
+		</category>
+	</section>
+</settings>

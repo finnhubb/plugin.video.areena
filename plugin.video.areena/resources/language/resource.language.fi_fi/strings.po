@@ -1,0 +1,172 @@
+# Kodi Media Center language file
+# Addon Name: Areena
+# Addon id: plugin.video.areena
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi Addons\n"
+"Report-Msgid-Bugs-To: Addon maintainer\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Finnish <https://kodi.weblate.cloud/languages/fi_fi/>\n"
+"Language: fi_fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+msgctxt "#33001"
+msgid "Settings"
+msgstr "Asetukset"
+
+msgctxt "#33002"
+msgid "Default language"
+msgstr "Kieli"
+
+msgctxt "#33003"
+msgid "Finnish"
+msgstr "Suomi"
+
+msgctxt "#33004"
+msgid "Swedish"
+msgstr "Ruotsi"
+
+msgctxt "#33005"
+msgid "Menu item color"
+msgstr "Valikon kohteiden väri"
+
+msgctxt "#33006"
+msgid "Title color"
+msgstr "Ohjelman nimen väri"
+
+msgctxt "#33007"
+msgid "Sort type"
+msgstr "Lajittelutyyppi"
+
+msgctxt "#33008"
+msgid "Default sort method"
+msgstr "Oletuslajittelumetodi"
+
+msgctxt "#33009"
+msgid "Name"
+msgstr "Nimi"
+
+msgctxt "#33010"
+msgid "Duration"
+msgstr "Kesto"
+
+msgctxt "#33011"
+msgid "Maximum resolution"
+msgstr "Suurin sallittu resoluutio"
+
+msgctxt "#33012"
+msgid "Automatic"
+msgstr "Automaattinen"
+
+msgctxt "#33013"
+msgid "SD-180"
+msgstr ""
+
+msgctxt "#33014"
+msgid "SD-270"
+msgstr ""
+
+msgctxt "#33015"
+msgid "SD-360"
+msgstr ""
+
+msgctxt "#33016"
+msgid "SD-576"
+msgstr ""
+
+msgctxt "#33017"
+msgid "HD-720"
+msgstr ""
+
+msgctxt "#33018"
+msgid "HD-1080"
+msgstr ""
+
+msgctxt "#33019"
+msgid "Show clips"
+msgstr "Näytä ohjelmapätkät"
+
+msgctxt "#33020"
+msgid "Downloads folder"
+msgstr "Ladattujen videon tallennuspaikka"
+
+msgctxt "#33021"
+msgid "Enable debug to kodi.log"
+msgstr "Kirjoita debug kodi.log -tiedostoon"
+
+msgctxt "#33022"
+msgid "Clear cache"
+msgstr "Poistaa välimuisti"
+
+msgctxt "#33023"
+msgid "All TV programs (A-Z)"
+msgstr "Kaikki TV-ohjelmat (A-Ö)"
+
+msgctxt "#33024"
+msgid "TV programs and movies (categories)"
+msgstr "TV-ohjelmat ja elokuvat (kategoria)"
+
+msgctxt "#33025"
+msgid "TV programs and movies (genres)"
+msgstr "TV-ohjelmat ja elokuvat (genre)"
+
+msgctxt "#33026"
+msgid "Live TV"
+msgstr "Suora TV"
+
+msgctxt "#33027"
+msgid "Search"
+msgstr "Haku"
+
+msgctxt "#33028"
+msgid "Season"
+msgstr "Kausi"
+
+msgctxt "#33029"
+msgid "Episode"
+msgstr "Jakso"
+
+msgctxt "#33030"
+msgid "Notice"
+msgstr "Ilmoitus"
+
+msgctxt "#33031"
+msgid "Error"
+msgstr "Virhe"
+
+msgctxt "#33032"
+msgid "Download started"
+msgstr "Lataus aloitettu"
+
+msgctxt "#33033"
+msgid "Download complete"
+msgstr "Ladattu"
+
+msgctxt "#33034"
+msgid "Download unavailable"
+msgstr "Lataus ei ole saatavilla"
+
+msgctxt "#33035"
+msgid "File exists"
+msgstr "Tiedosto on jo olemassa. Haluatko ylikirjoittaa sen vai ladata sen uudella nimellä vai jatkaa latausta"
+
+msgctxt "#33036"
+msgid "Replace"
+msgstr "Ylikirjoita"
+
+msgctxt "#33037"
+msgid "Rename"
+msgstr "Nimeä uudelleen"
+
+msgctxt "#33038"
+msgid "Resume download"
+msgstr "Jatka latausta"
+
+msgctxt "#33039"
+msgid "Download"
+msgstr "Lataa"

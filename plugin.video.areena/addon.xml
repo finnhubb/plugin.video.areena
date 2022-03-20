@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.areena"
+       version="1.0.0"
+       name="Yle Areena"
+       provider-name="Suomalainen">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests" version="2.25.0"/>
+        <import addon="inputstream.adaptive" version="2.6.14"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <language>en</language>
+        <language>fi</language>
+        <language>sv</language>
+        <summary lang="en">Watch YLE Areena</summary>
+        <summary lang="fi">Katso YLE Areenaa</summary>
+        <summary lang="sv">Titta på YLE Arenan</summary>
+        <description lang="en">Yle Areena plugin. Watch content from areena.yle.fi.</description>
+        <description lang="fi">Yle Areena lisäosa. Katso ohjelmia Areenasta, areena.yle.fi.</description>
+        <description lang="sv">Yle Areena plugin. Titta program från arenan.yle.fi.</description>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+        <source>https://github.com/finnhubb/plugin.video.areena</source>
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            <fanart>resources/media/fanart.jpg</fanart>
+        </assets>
+        <reuselanguageinvoker>true</reuselanguageinvoker>	
+    </extension>
+</addon>

@@ -1,0 +1,172 @@
+# Kodi Media Center language file
+# Addon Name: Areena
+# Addon id: plugin.video.areena
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi Addons\n"
+"Report-Msgid-Bugs-To: Addon maintainer\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English <https://kodi.weblate.cloud/languages/en_gb/>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#33001"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#33002"
+msgid "Default language"
+msgstr ""
+
+msgctxt "#33003"
+msgid "Finnish"
+msgstr ""
+
+msgctxt "#33004"
+msgid "Swedish"
+msgstr ""
+
+msgctxt "#33005"
+msgid "Menu item color"
+msgstr ""
+
+msgctxt "#33006"
+msgid "Title color"
+msgstr ""
+
+msgctxt "#33007"
+msgid "Sort type"
+msgstr ""
+
+msgctxt "#33008"
+msgid "Default sort method"
+msgstr ""
+
+msgctxt "#33009"
+msgid "Name"
+msgstr ""
+
+msgctxt "#33010"
+msgid "Duration"
+msgstr ""
+
+msgctxt "#33011"
+msgid "Maximum resolution"
+msgstr ""
+
+msgctxt "#33012"
+msgid "Automatic"
+msgstr ""
+
+msgctxt "#33013"
+msgid "SD-180"
+msgstr ""
+
+msgctxt "#33014"
+msgid "SD-270"
+msgstr ""
+
+msgctxt "#33015"
+msgid "SD-360"
+msgstr ""
+
+msgctxt "#33016"
+msgid "SD-576"
+msgstr ""
+
+msgctxt "#33017"
+msgid "HD-720"
+msgstr ""
+
+msgctxt "#33018"
+msgid "HD-1080"
+msgstr ""
+
+msgctxt "#33019"
+msgid "Show clips"
+msgstr ""
+
+msgctxt "#33020"
+msgid "Downloads folder"
+msgstr ""
+
+msgctxt "#33021"
+msgid "Enable debug to kodi.log"
+msgstr ""
+
+msgctxt "#33022"
+msgid "Clear cache"
+msgstr ""
+
+msgctxt "#33023"
+msgid "All TV programs (A-Z)"
+msgstr ""
+
+msgctxt "#33024"
+msgid "TV programs and movies (categories)"
+msgstr ""
+
+msgctxt "#33025"
+msgid "TV programs and movies (genres)"
+msgstr ""
+
+msgctxt "#33026"
+msgid "Live TV"
+msgstr ""
+
+msgctxt "#33027"
+msgid "Search"
+msgstr ""
+
+msgctxt "#33028"
+msgid "Season"
+msgstr ""
+
+msgctxt "#33029"
+msgid "Episode"
+msgstr ""
+
+msgctxt "#33030"
+msgid "Notice"
+msgstr ""
+
+msgctxt "#33031"
+msgid "Error"
+msgstr ""
+
+msgctxt "#33032"
+msgid "Download started"
+msgstr ""
+
+msgctxt "#33033"
+msgid "Download complete"
+msgstr ""
+
+msgctxt "#33034"
+msgid "Download unavailable"
+msgstr ""
+
+msgctxt "#33035"
+msgid "File exists"
+msgstr ""
+
+msgctxt "#33036"
+msgid "Replace"
+msgstr ""
+
+msgctxt "#33037"
+msgid "Rename"
+msgstr ""
+
+msgctxt "#33038"
+msgid "Resume download"
+msgstr ""
+
+msgctxt "#33039"
+msgid "Download"
+msgstr ""
