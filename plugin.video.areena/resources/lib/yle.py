@@ -372,7 +372,7 @@ def get_kaltura_id_or_none(media_data):
 
 def get_stream_manifest(site):
     """ Extracts the media_id and stream manifest from the yle api json response. """
-    json_data = site.json()["data"].get("ongoing_ondemand", {})
+    json_data = site.json()["data"].get("ongoing_ondemand", {}) or site.json()["data"].get("ongoing_event", {})
     manifest_url = json_data.get("manifest_url")
     media_data = json_data.get("media_id")
     return manifest_url, get_kaltura_id_or_none(media_data)
@@ -381,5 +381,4 @@ def get_stream_manifest(site):
 def get_live_stream_media_id(site):
     """ Extracts the media_id for a live stream from the yle api json response. """
     log(f"Live stream: {json.dumps(site.json(), indent=2)}")
-    media_data = site.json()["data"]["live"]["media"]["id"]
-    return get_kaltura_id_or_none(media_data)
+    return site.json()["data"]["live"]["item"]["id"]

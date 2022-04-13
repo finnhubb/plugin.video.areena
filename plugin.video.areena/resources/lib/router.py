@@ -369,8 +369,8 @@ def get_live_broadcast(media_id, locale):
     """ Fetches the playable stream manifest for the live AREENA broadcast. """
     url = yle.get_api_live_url(media_id, locale)
     res = get_url_response(url)
-    kaltura_id = yle.get_live_stream_media_id(res)
-    manifest, _ = get_mpd_stream_manifest(kaltura_id, mode="live")
+    yle_id = yle.get_live_stream_media_id(res)
+    manifest, _ = get_hls_stream_manifest(yle_id)
 
     return manifest
 
@@ -387,10 +387,7 @@ def get_live_stream_manifest(yle_id, locale):
     """ Fetches appropriate playable live stream manifest. """
     if yle_id == "yle-areena":
         manifest = get_live_broadcast(yle_id, locale)
-        stream_format = "mpd"
-
     else:
         manifest = get_resolution_specific_live_tv_stream(yle_id)
-        stream_format = "hls"
 
-    return manifest, stream_format
+    return manifest, "hls"
