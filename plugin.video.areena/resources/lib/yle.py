@@ -84,16 +84,15 @@ def get_api_list_url(content_or_packages, token, language):
 
 def get_api_episodes_url(media_id, show_clips):
     """ Constructs yle api url to access the list of episodes for a provided media_id season. """
-    _type = ""
+    program_type = ""
     if show_clips == "false":
-        _type = "program"
+        program_type = "program_type=program&"
 
-    return (f"https://areena.yle.fi/api/programs/v1/episodes/{media_id}.json?"
-            f"type={_type}&"
-            f"availability=&"
-            f"order=&"
-            f"app_id=areena_web_radio_prod&"
-            f"app_key=b3a0dc973c0aab997f1021bc7a0e3157")
+    return (f"https://programs.api.yle.fi/v3/schema/v1/series/{media_id}/episodes?"
+            f"{program_type}"
+            f"order=natural:asc&"
+            f"app_id=areena_web_frontend_prod&"
+            f"app_key=4622a8f8505bb056c956832a70c105d4&")
 
 
 def get_api_search_url(query, language):

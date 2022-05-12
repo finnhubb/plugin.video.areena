@@ -217,7 +217,7 @@ def get_series(locale, token, offset, count):
 def get_alphabetical_categories(locale):
     """ Fetches content by alphabetical category. """
     tok = yle.get_api_alphabetical_token(locale)
-    url = yle.get_api_list_url("packages", tok, locale)
+    url = yle.get_api_list_url("content", tok, locale)
     res = get_url_response(url)
 
     return yle.get_alphabetical_categories(res, locale)

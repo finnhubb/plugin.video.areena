@@ -37,7 +37,7 @@ It requires:
 
  1. [Download](https://kodi.tv/download/) and install Kodi.
 
- 2. [Download](https://github.com/finnhubb/plugin.video.areena/releases/download/v1.0.0/plugin.video.areena.zip) plugin.video.areena.zip.
+ 2. [Download](https://github.com/finnhubb/plugin.video.areena/releases/download/v1.0.2/plugin.video.areena.zip) plugin.video.areena.zip.
 
  3. Install from Kodi menu: `Add-ons -> Add-on browser -> Install from zip file -> plugin.video.areena.zip`
 
