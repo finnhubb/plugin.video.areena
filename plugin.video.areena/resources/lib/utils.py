@@ -29,20 +29,7 @@ In particular, kodi functions do not handle surrogatescaped unicode, but accepts
 """
 import os
 
-from resources.lib.kodi import get_setting, get_download_path, create_EEXIST_popup, get_user_input
-
-
-def get_max_bitrate_resolution_from_settings() -> int:
-    """
-    Bitrate corresponding to user specified resolution limit.
-    Bitrate values extracted from: $youtube-dl --list-formats url
-    """
-    # Maps to resolution [Automatic, 180, 270, 360, 576, 720, 1080]
-    # Live urls are maximum 720p, so use that by default.
-    bitrate = [None, 184, 414, 896, 1896, 4096, None]
-    resolution_limit = int(get_setting("max_resolution"))
-
-    return bitrate[resolution_limit] or 4096
+from resources.lib.kodi import get_download_path, create_EEXIST_popup, get_user_input
 
 
 def get_local_directory_items(path):

@@ -11,7 +11,7 @@ Note: Unofficial project with no endorsement/approval from Kodi Foundation or Yl
 
 ## Features
 - Finnish and Swedish language support.
-- Watch live TV channels (up to 48 hour server-side timeshift).
+- Watch live TV channels (4 hour server-side timeshift).
 - Browse TV and Movies by category.
 - Browse TV and Movies by genre.
 - Browse TV by alphabetical order.
@@ -37,7 +37,7 @@ It requires:
 
  1. [Download](https://kodi.tv/download/) and install Kodi.
 
- 2. [Download](https://github.com/finnhubb/plugin.video.areena/releases/download/v1.0.2/plugin.video.areena.zip) plugin.video.areena.zip.
+ 2. [Download](https://github.com/finnhubb/plugin.video.areena/releases/download/v1.1.0/plugin.video.areena.zip) plugin.video.areena.zip.
 
  3. Install from Kodi menu: `Add-ons -> Add-on browser -> Install from zip file -> plugin.video.areena.zip`
 
@@ -64,10 +64,8 @@ It requires:
 
 - AREENA live TV channel does not always have broadcast stream. When there is no stream, there is nothing to play...
 
-- Sometimes live TV channel streams start playing from beginning of available timeshift (eg -24h or -48h) instead of "live".
-
-- Maximum resolution setting only applies to live TV. For video on demand, inputstream.adaptive handles resolution.
-
+- Sometimes live TV channel streams start playing without audio. This happens when audio language is not default (ie Finnish).
+  To fix, select correct audio stream manually and pause/unpause stream to sync with correct audio.
 
 
 ## FAQ

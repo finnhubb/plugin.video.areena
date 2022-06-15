@@ -40,22 +40,6 @@
 					</constraints>
 					<control type="spinner" format="string"/>
 				</setting>
-				<setting id="max_resolution" type="integer" label="33011" help="">
-					<level>0</level>
-					<default>0</default>
-					<constraints>
-						<options>
-							<option label="33012">0</option> <!-- Automatic -->
-							<option label="33013">1</option> <!-- SD-180 -->
-							<option label="33014">2</option> <!-- SD-270 -->
-							<option label="33015">3</option> <!-- SD-360 -->
-							<option label="33016">4</option> <!-- SD-576 -->
-							<option label="33017">5</option> <!-- HD-720 -->
-							<option label="33018">6</option> <!-- HD-1080 -->
-						</options>
-					</constraints>
-					<control type="spinner" format="string"/>
-				</setting>
 				<setting id="show_clips" type="boolean" label="33019" help="">
 					<level>0</level>
 					<default>false</default>

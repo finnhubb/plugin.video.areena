@@ -118,7 +118,7 @@ def create_list_item_video_title(name, attrs):
     # if (episode := attrs.get("episode")):
     if attrs.get("episode"):
         episode = attrs.get("episode")
-        prefix += f"{localize(33028)} {episode} "
+        prefix += f"{localize(33029)} {episode} "
 
     return prefix + name
 

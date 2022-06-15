@@ -69,7 +69,7 @@ def addon_areena_main(param_string):
         do_command(event_type, params)
 
     elif event_type in ["menu", "channel", "downloads"]:
-        show_local_list(event_type, locale)
+        show_local_list(event_type)
 
     elif event_type in ["program", "clip", "video", "live"]:
         play_media(event_type, params, locale)
@@ -123,7 +123,7 @@ def play_media(event_type, params, locale):
     kodi.play_media_stream(manifest, stream_format, headers)
 
 
-def show_local_list(event_type, locale):
+def show_local_list(event_type):
     """ Displays a list of content. """
     if event_type == "menu":
         # Addon home screen.
@@ -133,7 +133,7 @@ def show_local_list(event_type, locale):
 
     elif event_type == "channel":
         # List of live channels.
-        content = populate_tv_channels(locale)
+        content = populate_tv_channels()
         list_type = "videos"
 
     elif event_type == "downloads":
@@ -257,18 +257,14 @@ def get_search_results(query, locale):
     return yle.get_category_content(res, locale)
 
 
-def populate_tv_channels(locale):
+def populate_tv_channels():
     """ Creates the live tv channel items. """
-    _type = "live"
-    teemafem = {"fi": "yleteemafemfi_1@490775",
-                "sv": "yleteemafemse_1@490776"}.get(locale)
-
     return [
-        mkdict("yle TV1", _type, "yletv1hls_1@103188", kodi.get_icon_path("tv1.png")),
-        mkdict("yle TV2", _type, "yletv2hls_1@103189", kodi.get_icon_path("tv2.png")),
-        mkdict("yle TEEMA FEM", _type, teemafem, kodi.get_icon_path("teema_fem.png")),
+        mkdict("yle TV1", "live", "622365/yletv1fin", kodi.get_icon_path("tv1.png")),
+        mkdict("yle TV2", "live", "622366/yletv2fin", kodi.get_icon_path("tv2.png")),
+        mkdict("yle TEEMA FEM", "live", "622367/yletvteemafemfin", kodi.get_icon_path("teema_fem.png")),
         # Note: the yle-areena broadcast requires an api call to get the stream url.
-        mkdict("yle AREENA", _type, "yle-areena", kodi.get_icon_path("y_areena.png"))
+        mkdict("yle AREENA", "live", "yle-areena", kodi.get_icon_path("y_areena.png"))
     ]
 
 
@@ -375,19 +371,11 @@ def get_live_broadcast(media_id, locale):
     return manifest
 
 
-def get_resolution_specific_live_tv_stream(yle_id):
-    """ Use the master url to get the correct resolution specific url. """
-    bandwidth = utils.get_max_bitrate_resolution_from_settings()
-    url = yle.get_live_tv_url(yle_id, bandwidth)
-
-    return url
-
-
 def get_live_stream_manifest(yle_id, locale):
     """ Fetches appropriate playable live stream manifest. """
     if yle_id == "yle-areena":
         manifest = get_live_broadcast(yle_id, locale)
     else:
-        manifest = get_resolution_specific_live_tv_stream(yle_id)
+        manifest = yle.get_live_tv_url(yle_id)
 
     return manifest, "hls"

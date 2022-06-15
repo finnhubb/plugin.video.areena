@@ -40,9 +40,9 @@ def get_package_path(locale):
             "sv": "/tv/program/"}.get(locale)
 
 
-def get_live_tv_url(media_id, bandwidth):
+def get_live_tv_url(media_id):
     """ Returns resolution specific live tv channel url. """
-    return f"https://yletv-lh.akamaihd.net/i/{media_id}/index_{bandwidth}_av-p.m3u8"
+    return f"https://yletv.akamaized.net/hls/live/{media_id}/master.m3u8"
 
 
 def get_image_url(_version, _id):
