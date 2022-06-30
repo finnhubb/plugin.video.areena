@@ -211,7 +211,7 @@ def get_category(path, locale):
 def get_series(locale, token, offset, count):
     """ Fetches list of series or films. """
     url = yle.get_api_list_url("content", token, locale)
-    return get_extended_content(url, locale, offset, total=count, parser="category")
+    return get_extended_content(url, locale, offset, total=count)
 
 
 def get_alphabetical_categories(locale):
@@ -226,12 +226,19 @@ def get_alphabetical_categories(locale):
 def get_episodes(path, locale):
     """ Fetches media content list, usually episodes. """
     show_clips = kodi.get_setting("show_clips")
-    url = yle.get_api_episodes_url(path, show_clips)
+    url = yle.get_base_url(locale) + '/' + path
+    res = get_url_response(url)
+    token, seasons = yle.get_season_ids(res, show_clips)
 
-    return get_extended_content(url, locale, offset=0, total=2000, parser="episodes")
+    ctx = []
+    for season_name, yle_id in seasons:
+        url = yle.get_api_episodes_url(token, yle_id, locale)
+        res = get_url_response(url)
+        ctx += yle.get_category_content(res, locale, season_name)
+    return ctx
 
 
-def get_extended_content(base_url, locale, offset, total, parser):
+def get_extended_content(base_url, locale, offset, total):
     """ Fetches list of content (series/films or episodes) that requires multiple api calls. """
     ctx = []
     while total > 0:
@@ -239,7 +246,7 @@ def get_extended_content(base_url, locale, offset, total, parser):
         requested = min(total, 100)
         url = yle.create_api_query(base_url, requested, offset)
         res = get_url_response(url)
-        content, count = yle.get_query_content(parser, res, locale)
+        content, count = yle.get_query_content(res, locale)
         ctx.extend(content)
         # Total available remaining entries on the server for this category.
         total = min(total, count) - requested
@@ -279,7 +286,6 @@ def populate_home_menu():
         mkdict(kodi.localize(33001), "settings", icon=kodi.get_icon_path("settings.png")),
         mkdict(kodi.localize(33020), "downloads")
     ]
-
 
 
 def populate_downloads():

@@ -8,8 +8,6 @@ media_data: {
     "description" : program plot,
     "duration": str(float(seconds)),
     "image": "https://images.cdn.yle.fi/.../.jpg",
-    "season": 3
-    "episode": 7
     "api_data": {
         "type": "series",
         "yle_id": "/1-12345" or "/tv/ohjelmat/30-12"
@@ -82,17 +80,16 @@ def get_api_list_url(content_or_packages, token, language):
             f"app_key=6c64d890124735033c50099ca25dd2fe")
 
 
-def get_api_episodes_url(media_id, show_clips):
-    """ Constructs yle api url to access the list of episodes for a provided media_id season. """
-    program_type = ""
-    if show_clips == "false":
-        program_type = "program_type=program&"
-
-    return (f"https://programs.api.yle.fi/v3/schema/v1/series/{media_id}/episodes?"
-            f"{program_type}"
-            f"order=natural:asc&"
-            f"app_id=areena_web_frontend_prod&"
-            f"app_key=4622a8f8505bb056c956832a70c105d4&")
+def get_api_episodes_url(token, yle_id, language):
+    """ Constructs yle api query with supplied token (signed jwt specifying the query). """
+    return (f"https://areena.api.yle.fi/v1/ui/content/list?"
+            f"token={token}&"
+            f"path.season={yle_id}&"
+            f"language={language}&"
+            f"v=9&"
+            f"client=yle-areena-web&"
+            f"app_id=areena-web-items&"
+            f"app_key=v9No1mV0omg2BppmDkmDL6tGKw1pRFZt")
 
 
 def get_api_search_url(query, language):
@@ -125,11 +122,6 @@ def get_api_alphabetical_token(locale):
            "mVmZXJlciI6InR2LnZpZXcuNTctUnl5Sm53YjliLmFsbGFfdHZfcHJvZ3JhbS5hX28udW50aXRsZWRfbGlzdCI"
            "sInlsZV9wYWNrYWdlX2lkIjoiMzAtNDg4In19fX0.v4kayxYaMtPxseJCAKrueSHwNca7nVmvjECwMdhQMkQ")
             }.get(locale)
-
-
-def get_locale_specific_value(item, locale):
-    """ Gets the value in the specified language (sv or fi) or whichever exists.. """
-    return item.get(locale, "") or item.get("fi", "") or item.get("sv", "")
 
 
 def get_root_categories(site):
@@ -171,12 +163,33 @@ def get_sub_categories(site):
             _api_tok = extract_token(entry["source"]["uri"])
         except (AttributeError, LookupError, TypeError, ValueError):
             continue
-
         api_data = kwdict(type=_type, yle_id=_id, api_tok=_api_tok)
         media_data = kwdict(name=_name, api_data=api_data)
         categories.append(media_data)
 
     return categories
+
+
+def get_season_ids(site, show_clips):
+    """ Scrapes the yle areena season page for JSON and extracts a list of season ids and content link. """
+    soup = Soup(site.text).find("script", {"id": "__NEXT_DATA__"})
+    json_data = json.loads(soup.text)
+
+    jwt_url = json_data['props']['pageProps']['view']['tabs'][0]['content'][0]['source']['uri']
+    api_tok = extract_token(jwt_url)
+    api_tok = api_tok[:api_tok.rfind("&path")]
+
+    seasons = json_data['props']['pageProps']['view']['tabs'][0]['content'][0]['filters']
+    payload = []
+
+    if seasons:
+        paths = seasons[0]['options']
+        payload += [(x['title'], x['parameters']['path.season']) for x in paths]
+
+    elif show_clips:
+        payload += [("", "")]
+
+    return (api_tok, payload)
 
 
 def sort_alphabetical_categories(categories):
@@ -187,10 +200,10 @@ def sort_alphabetical_categories(categories):
     The order that the content is stored does not match the order the content is listed.
     Therefore the order needs adjusting before calculating offsets.
 
-    listed order: A-Z,Ä,Å,Ö,Þ,Ž
+    listed order: A-Z,À,Ä,Å,Ö,Þ,Ž
     stored order: A-T,Þ,U-Z,Ž,Å,Ä,Ö
     """
-    alphabet = ["0-9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
+    alphabet = ["0-9","A","À","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
                   "P","Q","R","S","T","Þ","U","V","W","X","Y","Z","Ž","Å","Ä","Ö"]
     # Sort the list of dictionaries by their "name" value, using the provided sort ordering.
     sorted_categories = sorted(categories, key=lambda entry: alphabet.index(entry["name"]))
@@ -227,11 +240,12 @@ def get_alphabetical_categories(site, locale):
     return sort_alphabetical_categories(categories)
 
 
-def get_category_content(site, locale):
+def get_category_content(site, locale, title_prefix=None):
     """ Extracts all media (programs and series lists) from the yle API JSON response. """
     content = []
     json_data = site.json()["data"]
     log(f"Category content: {json.dumps(json_data, indent=2)}")
+    title_prefix = title_prefix or ""
 
     for entry in json_data:
         _name = entry.get("title", "")
@@ -249,51 +263,18 @@ def get_category_content(site, locale):
             _image = ""
 
         try:
-            _duration = get_duration_seconds(entry["labels"][3]["raw"])
+            _duration = extract_duration_timestamp(entry["labels"])
         except (AttributeError, LookupError, TypeError, ValueError):
             _duration = ""
 
         api_data = kwdict(type=_type, yle_id=_id)
-        media_data = kwdict(name=_name,
+        media_data = kwdict(name=f"{title_prefix} {_name}",
                             description=_description,
                             duration=_duration,
                             image=_image,
                             api_data=api_data)
         content.append(media_data)
 
-    return content
-
-
-def get_season_episodes(site, locale):
-    """ Extracts all episodes (and clips) from the yle API JSON response. """
-    content = []
-    json_data = site.json()["data"]
-    log(f"Episodes content: {json.dumps(json_data, indent=2)}")
-
-    for entry in json_data:
-        _name = get_locale_specific_value(entry.get("title", {}), locale)
-        _id = entry.get("id", "")
-        _type = entry.get("typeCreative", "").lower()
-        _description = get_locale_specific_value(entry.get("description", {}), locale)
-        _season = str(entry.get("partOfSeason", {}).get("seasonNumber", ""))
-        _episode = str(entry.get("episodeNumber", ""))
-        _duration = extract_duration_timestamp(entry.get("duration"), entry.get("publicationEvent", ""))
-        _kaltura_id = get_kaltura_id_or_none(extract_media_data(entry.get("publicationEvent", "")))
-
-        try:
-            _image = get_image_url(entry["image"]["version"], entry["image"]["id"])
-        except (AttributeError, LookupError, TypeError, ValueError):
-            _image = ""
-
-        api_data = kwdict(type=_type, yle_id=_id, kaltura_id=_kaltura_id)
-        media_data = kwdict(name=_name,
-                            description=_description,
-                            duration=_duration,
-                            image=_image,
-                            season=_season,
-                            episode=_episode,
-                            api_data=api_data)
-        content.append(media_data)
     return content
 
 
@@ -302,33 +283,21 @@ def create_api_query(url, limit, offset):
     return url + f"&limit={limit}&offset={offset}"
 
 
-def get_query_content(parser, res, locale):
+def get_query_content(res, locale):
     """ Parses response for appropriate content and returns the total number of items available. """
-    if parser == "episodes":
-        content = get_season_episodes(res, locale)
-    else:
-        content = get_category_content(res, locale)
-
+    content = get_category_content(res, locale)
     count = res.json()["meta"]["count"]
 
     return (content, count)
 
 
-def extract_duration_timestamp(timestamp, json_data):
+def extract_duration_timestamp(json_data):
     """ Find and parse the duration timestamp stored in inconsistent locations in the JSON. """
-    if not timestamp:
-        # requres python >= 3.8
-        # timestamp = next((x for y in json_data if (x := y.get("media", {}).get("duration"))), "")
-        timestamp = next((i for i in map(lambda x: x.get("media", {}).get("duration"), json_data) if i), "")
-
-    return get_duration_seconds(timestamp)
-
-
-def extract_media_data(json_data):
-    """ Find the media_data stored in inconsistent locations in the JSON. """
-    # requres python >= 3.8
-    # return next((x for y in json_data if (x := y.get("media", {}).get("id"))), "")
-    return next((i for i in map(lambda x: x.get("media", {}).get("id"), json_data) if i), "")
+    timestamp = (i.get("raw") for i in json_data if i.get("rawType") == "duration")
+    try:
+        return get_duration_seconds(next(timestamp))
+    except StopIteration:
+        return ""
 
 
 def extract_token(url):
